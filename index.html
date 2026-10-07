@@ -2,156 +2,193 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
- 
-<title>Edson & Ceci | Comparte tus Fotos</title>
- 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500=swap
- 
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#2b1520">
+<title>Edson & Ceci | Comparte tus fotos</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
 <style>
- 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
+*{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+  --rosa:#ff5c97;
+  --rosa-oscuro:#e8397a;
+  --rosa-suave:#ffd6e7;
 }
- 
+
+html{-webkit-text-size-adjust:100%;background:#2b1520}
+
+/* ===== FONDO: capa fija detrás de todo ===== */
+.fondo{
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  background-color:#2b1520;
+  background-image:
+    linear-gradient(180deg,rgba(0,0,0,0) 35%,rgba(20,8,14,.65) 100%),
+    url("fondo.jpg");
+  background-size:cover;
+  background-position:center 20%;
+  background-repeat:no-repeat;
+}
+
 body{
-min-height:100vh;
-font-family:'Poppins',sans-serif;
-display:flex;
-align-items:center;
-justify-content:center;
- 
-background:
-linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)),
-url("fondo.jpg");
- 
-background-size:cover;
-background-position:center;
-background-repeat:no-repeat;
+  min-height:100vh;
+  min-height:100dvh;
+  font-family:'Poppins',system-ui,sans-serif;
+  display:flex;
+  align-items:flex-end;      /* la tarjeta abajo, para que se vea la pareja */
+  justify-content:center;
+  padding:
+    24px
+    max(16px, env(safe-area-inset-right))
+    max(20px, env(safe-area-inset-bottom))
+    max(16px, env(safe-area-inset-left));
 }
- 
+
 .card{
-width:90%;
-max-width:550px;
- 
-background:rgba(255,255,255,0.15);
-backdrop-filter:blur(14px);
- 
-border-radius:30px;
-padding:40px 30px;
- 
-text-align:center;
-color:white;
- 
-box-shadow:0 20px 50px rgba(0,0,0,.25);
+  position:relative;
+  width:100%;
+  max-width:480px;
+  margin-top:70px;           /* espacio para el logo que sobresale */
+  padding:62px 26px 30px;
+  text-align:center;
+  color:#fff;
+  background:rgba(35,16,25,.42);
+  -webkit-backdrop-filter:blur(16px);
+  backdrop-filter:blur(16px);
+  border:1px solid rgba(255,255,255,.28);
+  border-radius:28px;
+  box-shadow:0 20px 50px rgba(0,0,0,.35);
+  animation:entrada .8s ease-out both;
 }
- 
+
+/* ===== LOGO: insignia circular sobre el borde superior ===== */
 .logo{
-width:70px;
-height:auto;
-display:block;
-margin:0 auto 20px auto;
+  position:absolute;
+  top:-46px;
+  left:50%;
+  transform:translateX(-50%);
+  width:92px;
+  height:92px;
+  border-radius:50%;
+  overflow:hidden;
+  background:#f5f5f5;        /* mismo gris del logo */
+  border:3px solid #fff;
+  box-shadow:0 8px 22px rgba(0,0,0,.35);
 }
- 
+.logo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transform:scale(1.9);      /* recorta el margen vacío del logo */
+}
+
 h1{
-font-family:'Playfair Display',serif;
-font-size:3rem;
-margin-bottom:10px;
+  font-family:'Playfair Display',serif;
+  font-weight:600;
+  font-size:clamp(2.1rem,9.5vw,3rem);
+  line-height:1.1;
+  text-shadow:0 2px 12px rgba(0,0,0,.4);
 }
- 
+
 .divider{
-width:80px;
-height:3px;
-background:#ffd6e7;
-margin:15px auto 25px;
+  width:70px;
+  height:3px;
+  border-radius:3px;
+  background:var(--rosa-suave);
+  margin:16px auto 20px;
 }
- 
+
 .text{
-font-size:1.1rem;
-line-height:1.8;
-margin-bottom:25px;
+  font-size:1rem;
+  font-weight:300;
+  line-height:1.7;
+  margin-bottom:18px;
 }
- 
+
 .date{
-font-size:1rem;
-margin-bottom:30px;
-color:#ffdce8;
+  font-size:.95rem;
+  color:var(--rosa-suave);
+  margin-bottom:24px;
 }
- 
+
 .btn{
-display:inline-block;
- 
-background:#ff5c97;
-color:white;
- 
-padding:18px 40px;
- 
-border-radius:50px;
- 
-text-decoration:none;
- 
-font-weight:600;
-font-size:1.1rem;
- 
-transition:.3s;
+  display:block;
+  width:100%;
+  max-width:340px;
+  margin:0 auto;
+  padding:17px 24px;
+  background:var(--rosa);
+  color:#fff;
+  border-radius:50px;
+  text-decoration:none;
+  font-weight:600;
+  font-size:1.1rem;
+  box-shadow:0 10px 24px rgba(255,92,151,.45);
+  transition:background .25s, transform .25s;
+  -webkit-tap-highlight-color:transparent;
 }
- 
-.btn:hover{
-background:#ff3d84;
-transform:translateY(-3px);
-}
- 
+.btn:hover{background:var(--rosa-oscuro);transform:translateY(-3px)}
+.btn:active{transform:scale(.97)}
+.btn:focus-visible{outline:3px solid #fff;outline-offset:4px}
+
 .footer{
-margin-top:30px;
-font-size:.95rem;
-opacity:.9;
+  margin-top:22px;
+  font-size:.92rem;
+  opacity:.92;
 }
- 
-@media (max-width:600px){
- 
-h1{
-font-size:2.2rem;
+
+@keyframes entrada{
+  from{opacity:0;transform:translateY(16px)}
+  to{opacity:1;transform:none}
 }
- 
-.card{
-padding:30px 20px;
+
+@media (max-width:420px){
+  .card{padding:60px 20px 26px;border-radius:24px}
+  .text{font-size:.97rem}
 }
- 
-.btn{
-width:100%;
-display:block;
+
+@media (prefers-reduced-motion:reduce){
+  .card{animation:none}
+  .btn{transition:none}
 }
- 
-}
- 
 </style>
- 
 </head>
- 
+
 <body>
- 
-<div class="card">
- 
-<img src="logo.png" class="logo" i</h1>
- 
-<div class="divider"></div>
- 
-<p class="text">
-Ayúdanos a capturar cada sonrisa, cada abrazo y cada momento especial de esta noche.
-Comparte tus fotos y videos para conservar juntos estos recuerdos inolvidables.
-</p>
- 
-<div class="date">
-❤️ Gracias por ser parte de nuestra historia ❤️
-</div>
- 
-<a href="https://docs.google.com/forms/d/e/1FAIpQLScgiiWrUbgPW1Qp7KXXtDdpxFXdrrRgXhSmHu5bun5fDDdNfA/viewform?usp=header"
-target="_blank"
-class="btn">
-📸 Subir Fotos
-</a>
- 
-<div class="footer">
-Con cariño, Edson & Cecy
+
+<div class="fondo" aria-hidden="true"></div>
+
+<main class="card">
+
+  <div class="logo">
+    <img src="logo.png" alt="Logo de Edson y Ceci">
+  </div>
+
+  <h1>Edson &amp; Ceci</h1>
+
+  <div class="divider"></div>
+
+  <p class="text">
+    Ayúdanos a capturar cada sonrisa, cada abrazo y cada momento especial de esta noche.
+    Comparte tus fotos y videos para conservar juntos estos recuerdos inolvidables.
+  </p>
+
+  <p class="date">❤️ Gracias por ser parte de nuestra historia ❤️</p>
+
+  <a class="btn"
+     href="https://docs.google.com/forms/d/e/1FAIpQLScgiiWrUbgPW1Qp7KXXtDdpxFXdrrRgXhSmHu5bun5fDDdNfA/viewform?usp=header"
+     target="_blank" rel="noopener">
+    📸 Subir fotos
+  </a>
+
+  <p class="footer">Con cariño, Edson &amp; Ceci</p>
+
+</main>
+
+</body>
+</html>
